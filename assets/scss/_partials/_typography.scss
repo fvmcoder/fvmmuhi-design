@@ -2,10 +2,10 @@
 
 
 html {
-  font-size: 85%;
+  font-size: 100%;
   @include media(">=tablet") {
 
-    font-size: 100%;
+    font-size: 112%;
   }
   @include media(">=desktop") {
 

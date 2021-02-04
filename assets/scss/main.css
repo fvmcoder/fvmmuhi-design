@@ -126,12 +126,12 @@ a:hover {
 }
 
 html {
-  font-size: 85%;
+  font-size: 100%;
 }
 
 @media (min-width: 768px) {
   html {
-    font-size: 100%;
+    font-size: 112%;
   }
 }
 
@@ -195,7 +195,7 @@ small, .text_small {
   height: 100%;
   width: 100%;
   min-height: 640px;
-  background-color: rgba(6, 6, 6, 0.75);
+  background-color: #060606;
 }
 
 button {
@@ -237,7 +237,7 @@ button {
 }
 
 #home-section {
-  padding: 1.25rem;
+  padding: 1.0rem;
 }
 
 #home-section .container {
@@ -245,22 +245,24 @@ button {
   position: relative;
 }
 
+#home-section .container .line {
+  position: absolute;
+  height: 1.5rem;
+  width: 1px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  background-color: #ff4500;
+}
+
 #home-section .container .content {
-  padding: 4rem 3.5rem 0.85rem 3.5rem;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: (1fr)[6];
+      grid-template-rows: repeat(6, 1fr);
 }
 
 @media (min-width: 768px) {
@@ -272,8 +274,24 @@ button {
         -ms-flex-pack: center;
             justify-content: center;
   }
+}
+
+#home-section .container .content #logo-block {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
+  grid-row: 3/5;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+@media (min-width: 768px) {
   #home-section .container .content #logo-block {
-    margin-bottom: 32px;
+    -ms-grid-row: 3;
+    -ms-grid-row-span: 1;
+    grid-row: 3/4;
   }
 }
 
@@ -282,10 +300,20 @@ button {
 }
 
 #home-section .container .content #naming-block {
+  -ms-grid-row: 2;
+  grid-row: 2/2;
   text-align: center;
   -webkit-box-ordinal-group: 0;
       -ms-flex-order: -1;
           order: -1;
+}
+
+@media (min-width: 768px) {
+  #home-section .container .content #naming-block {
+    -ms-grid-row: 4;
+    -ms-grid-row-span: 1;
+    grid-row: 4/5;
+  }
 }
 
 #home-section .container .content #naming-block .naming {
@@ -296,15 +324,16 @@ button {
 }
 
 #home-section .container .content #naming-block .roles {
-  font-size: 0.85rem;
+  font-size: 1.0rem;
   text-transform: uppercase;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   line-height: 1.5rem;
   opacity: 0.75;
 }
 
 @media (min-width: 768px) {
   #home-section .container .content #naming-block {
+    margin-bottom: 2rem;
     -webkit-box-ordinal-group: 1;
         -ms-flex-order: 0;
             order: 0;
@@ -314,40 +343,24 @@ button {
   }
 }
 
-@media (min-width: 1366px) {
-  #home-section .container .content #naming-block .roles {
-    font-size: 0.85rem;
-  }
-}
-
 #home-section .container .content #action-block {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-@media (min-width: 768px) {
-  #home-section .container .content #action-block {
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
-    position: absolute;
-    bottom: 0;
-  }
+  -ms-grid-row: 5;
+      grid-row-start: 5;
+  grid-row-end: 7;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 #home-section .container .content #action-block .button {
+  margin: 1rem auto;
   min-width: 128px;
   min-height: 42px;
   -webkit-filter: drop-shadow(0px 6px 12px black);
           filter: drop-shadow(0px 6px 12px black);
+  background-color: #1938ff;
 }
 
 #home-section .container .content #action-block .button .text {
@@ -357,13 +370,13 @@ button {
 #home-section .container .content #action-block .button .line-blue {
   height: 1px;
   width: 16px;
-  background-color: #1938ff;
+  background-color: #fff;
 }
 
 #home-section .container .content #action-block .button .line-orange {
   height: 1px;
   width: 16px;
-  background-color: #ff4500;
+  background-color: #fff;
 }
 
 @media (min-width: 768px) {

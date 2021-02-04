@@ -1,34 +1,48 @@
 #home-section {
-    padding: 1.25rem;
+    padding: 1.0rem;
 
     .container {
         min-height: 608px;
         position: relative;
 
+        .line{
+            position: absolute;
+            height: 1.5rem;
+            width: 1px;
+            left: 50%;
+            transform: translate(-50%, 0);
 
+            background-color: appColor(primary);
+
+        }
         .content {
 
-            padding: 4rem 3.5rem 0.85rem 3.5rem;
+  
             height: 100%;
-
-            display: flex;
-            flex-direction: column;
-
-            align-items: center;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(6, 1fr);
 
             @include media(">=tablet") {
                 order: 0;
                 justify-content: center;
 
-                #logo-block {
-                    margin-bottom: 32px;
 
-                }
+
 
             }
 
             #logo-block {
+                grid-row: 3/5;
+
+                @include media(">=tablet") {
+                    grid-row: 3/4;
+                }
+
+
+                align-self: center;
+                justify-self: center;
+
                 img {
                     width: 12rem;
                 }
@@ -36,7 +50,13 @@
             }
 
             #naming-block {
+                grid-row: 2/2;
                 text-align: center;
+
+                @include media(">=tablet") {
+                    grid-row: 4/5;
+                }
+
                 order: -1;
 
                 .naming {
@@ -48,51 +68,47 @@
                 }
 
                 .roles {
-                    font-size: 0.85rem;
+                    font-size: 1.0rem;
 
                     text-transform: uppercase;
-                    letter-spacing: 0.2rem;
+                    letter-spacing: 0.1rem;
                     line-height: 1.5rem;
 
                     opacity: 0.75;
                 }
 
-
                 @include media(">=tablet") {
+                    margin-bottom: 2rem;
                     order: 0;
-
                     .roles {
                         letter-spacing: 0.15rem;
                     }
                 }
 
 
-                @include media(">=desktop") {
-
-                    .roles {
-                        font-size: 0.85rem;
-                    }
-                }
-
             }
 
             #action-block {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                grid-row-start: 5;
+                grid-row-end: 7;
 
-                @include media(">=tablet") {
-                    order: 0;
-                    position: absolute;
-                    bottom: 0;
-                }
+                align-self: center;
+                justify-self: center;
+
+      
 
                 .button {
+                    margin: 1rem auto;
+            
 
                     min-width: 128px;
                     min-height: 42px;
 
                     filter: drop-shadow(0px 6px 12px rgb(0, 0, 0));
+
+                    background-color: appColor(secondary);
+
+                    
 
                     .text {
                         margin: 0 12px;
@@ -101,13 +117,13 @@
                     .line-blue {
                         height: 1px;
                         width: 16px;
-                        background-color: appColor(secondary);
+                        background-color: appColor(white-primary);
                     }
 
                     .line-orange {
                         height: 1px;
                         width: 16px;
-                        background-color: appColor(primary);
+                        background-color: appColor(white-primary);
                     }
 
                     @include media(">=tablet") {
@@ -126,6 +142,7 @@
                     opacity: 0.65;
                     width: 256px;
                     text-align: center;
+
 
                     @include media(">=desktop") {
                         width: 396px;
