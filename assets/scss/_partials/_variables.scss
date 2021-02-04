@@ -1,0 +1,44 @@
+$colors : (
+    primary:#ff4500,
+    secondary: #1938ff,
+    accent : #e60dff,
+
+    black-primary: #060606,
+    black-accent:#24242d,
+
+    white-primary: #fff,
+    bg: #24242d
+);
+
+@function appColor($color-name){
+    @return map-get($colors, $color-name)
+}
+
+
+$globalsVar : (
+    padding: 24px,
+    margin : 24px,
+    gap: 24px,
+
+);
+
+.primary{
+    color : appColor(primary);
+}
+.accent{
+    color : appColor(accent);
+}
+
+.bg-primary{
+    background-color : appColor(primary);
+}
+.bg-accent{
+    background-color : appColor(accent);
+}
+    
+    
+
+@function common($name){
+    @return map-get($globalsVar, $name)
+};
+

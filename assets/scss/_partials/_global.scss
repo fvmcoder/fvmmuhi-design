@@ -1,0 +1,13 @@
+.section{
+    background: transparent;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    min-height: 640px;
+    background-color: rgba($color: appColor(black-primary), $alpha: 0.75);
+
+}

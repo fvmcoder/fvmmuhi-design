@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38.184" height="51.621" viewBox="0 0 38.184 51.621">
+  <g id="arrow-line" transform="translate(2.121 2.121)">
+    <line id="line-three" x1="24" transform="translate(16.971 0) rotate(45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+    <path id="line-two" d="M48,0H0" transform="translate(16.971 48) rotate(-90)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+    <line id="line-one" x1="24" transform="translate(0 16.971) rotate(-45)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+  </g>
+</svg>

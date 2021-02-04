@@ -1,0 +1,146 @@
+#home-section {
+    padding: 1.25rem;
+
+    .container {
+        min-height: 608px;
+        position: relative;
+
+
+        .content {
+
+            padding: 4rem 3.5rem 0.85rem 3.5rem;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: space-between;
+
+            @include media(">=tablet") {
+                order: 0;
+                justify-content: center;
+
+                #logo-block {
+                    margin-bottom: 32px;
+
+                }
+
+            }
+
+            #logo-block {
+                img {
+                    width: 12rem;
+                }
+
+            }
+
+            #naming-block {
+                text-align: center;
+                order: -1;
+
+                .naming {
+                    font-size: 1.5rem;
+
+                    text-transform: uppercase;
+                    margin-bottom: 8px;
+                    letter-spacing: 0.1rem;
+                }
+
+                .roles {
+                    font-size: 0.85rem;
+
+                    text-transform: uppercase;
+                    letter-spacing: 0.2rem;
+                    line-height: 1.5rem;
+
+                    opacity: 0.75;
+                }
+
+
+                @include media(">=tablet") {
+                    order: 0;
+
+                    .roles {
+                        letter-spacing: 0.15rem;
+                    }
+                }
+
+
+                @include media(">=desktop") {
+
+                    .roles {
+                        font-size: 0.85rem;
+                    }
+                }
+
+            }
+
+            #action-block {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                @include media(">=tablet") {
+                    order: 0;
+                    position: absolute;
+                    bottom: 0;
+                }
+
+                .button {
+
+                    min-width: 128px;
+                    min-height: 42px;
+
+                    filter: drop-shadow(0px 6px 12px rgb(0, 0, 0));
+
+                    .text {
+                        margin: 0 12px;
+                    }
+
+                    .line-blue {
+                        height: 1px;
+                        width: 16px;
+                        background-color: appColor(secondary);
+                    }
+
+                    .line-orange {
+                        height: 1px;
+                        width: 16px;
+                        background-color: appColor(primary);
+                    }
+
+                    @include media(">=tablet") {
+                        min-width: 132px;
+                        min-height: 44px;
+                    }
+
+                    @include media(">=desktop") {
+                        min-width: 156px;
+                        min-height: 48px;
+                        font-size: 0.75rem;
+                    }
+                }
+
+                .quotes {
+                    opacity: 0.65;
+                    width: 256px;
+                    text-align: center;
+
+                    @include media(">=desktop") {
+                        width: 396px;
+
+                        small {}
+                    }
+                }
+
+            }
+
+
+        }
+    }
+
+
+
+
+}
