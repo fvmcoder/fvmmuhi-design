@@ -1,0 +1,316 @@
+body.catalogue-page {
+    background: #f5f5f5;
+    color: appColor(black-primary);
+
+    // Shared utilities
+    .section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2rem;
+        color: appColor(primary);
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: center;
+        color: appColor(black-primary);
+        margin-top: 0;
+        margin-bottom: 2.5rem;
+
+        @include media(">=tablet") {
+            font-size: 1.9rem;
+        }
+    }
+
+    .section-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 common(padding);
+    }
+
+    // ---- Hero ----
+    .hero {
+        background: #ffffff;
+        padding: 3.5rem 0;
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 common(padding);
+
+            @include media(">=tablet") {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: center;
+            }
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            color: appColor(primary);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+            color: appColor(black-primary);
+            margin-top: 0;
+            margin-bottom: 1rem;
+
+            @include media(">=tablet") {
+                font-size: 2.5rem;
+            }
+
+            @include media(">=desktop") {
+                font-size: 3rem;
+            }
+        }
+
+        .hero-sub {
+            font-size: 0.95rem;
+            color: rgba(6, 6, 6, 0.6);
+            margin-bottom: 2rem;
+            max-width: 440px;
+            line-height: 1.75;
+        }
+
+        .btn-primary {
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: appColor(secondary);
+            color: appColor(white-primary);
+            border: none;
+            border-radius: 25px;
+            padding: 0 2rem;
+            min-height: 52px;
+            min-width: 180px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            cursor: pointer;
+            filter: drop-shadow(0px 6px 16px rgba(25, 56, 255, 0.3));
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+
+        .hero-visual {
+            display: none;
+
+            @include media(">=tablet") {
+                display: block;
+            }
+
+            .mockup {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                max-width: 340px;
+                margin-left: auto;
+
+                .mockup-row {
+                    display: flex;
+                    gap: 8px;
+                    height: 80px;
+
+                    .mockup-cell {
+                        flex: 1;
+                        border-radius: 6px;
+
+                        &.full {
+                            flex: none;
+                            width: 100%;
+                        }
+
+                        &.wide { flex: 1.6; }
+
+                        &.c-orange { background-color: appColor(primary); }
+                        &.c-blue   { background-color: appColor(secondary); }
+                        &.c-dark   { background-color: appColor(black-accent); }
+                        &.c-gray   { background-color: #d8d8d8; }
+                        &.c-light  { background-color: #f0f0f0; border: 1px solid #ddd; }
+                    }
+                }
+            }
+        }
+    }
+
+    // ---- Services ----
+    .services {
+        padding: 4rem 0;
+        background-color: #f5f5f5;
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+
+            @include media(">=tablet") {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @include media(">=desktop") {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    }
+
+    // ---- Portfolio ----
+    .portfolio {
+        padding: 4rem 0;
+        background: #ffffff;
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+
+            @include media(">=tablet") {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.25rem;
+            }
+        }
+
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+
+            &:hover .portfolio-cover {
+                transform: scale(1.03);
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+            }
+        }
+
+        .portfolio-cover {
+            height: 160px;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            @include media(">=tablet") {
+                height: 210px;
+            }
+
+            &.cover-1 { background: linear-gradient(135deg, #ff4500 0%, #ff7a45 100%); }
+            &.cover-2 { background: linear-gradient(135deg, #1938ff 0%, #4f68ff 100%); }
+            &.cover-3 { background: linear-gradient(135deg, #24242d 0%, #3a3a50 100%); }
+            &.cover-4 { background: linear-gradient(135deg, #ff4500 30%, #1938ff 100%); }
+            &.cover-5 { background: linear-gradient(135deg, #e60dff 0%, #8e0dff 100%); }
+            &.cover-6 { background: linear-gradient(135deg, #060606 0%, #24242d 100%); }
+        }
+
+        .portfolio-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+
+    // ---- CTA Band ----
+    .cta-band {
+        background-color: appColor(black-accent);
+        padding: 4rem common(padding);
+        text-align: center;
+
+        h2 {
+            color: appColor(white-primary);
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+
+            @include media(">=tablet") {
+                font-size: 1.9rem;
+            }
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-cta {
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: appColor(primary);
+            color: appColor(white-primary);
+            border: none;
+            border-radius: 25px;
+            padding: 0 2rem;
+            min-height: 52px;
+            min-width: 180px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            cursor: pointer;
+            filter: drop-shadow(0px 6px 16px rgba(255, 69, 0, 0.4));
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+
+    // ---- Footer ----
+    .catalogue-footer {
+        background: appColor(black-primary);
+        padding: 1.75rem common(padding);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: center;
+
+        @include media(">=tablet") {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            img {
+                width: 1.75rem;
+            }
+
+            span {
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.65);
+                text-transform: uppercase;
+                letter-spacing: 0.05rem;
+            }
+        }
+
+        .footer-copy {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 0;
+        }
+    }
+}

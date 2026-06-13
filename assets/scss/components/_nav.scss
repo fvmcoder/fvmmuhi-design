@@ -1,0 +1,58 @@
+.catalogue-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 common(padding);
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+
+        img {
+            width: 2.25rem;
+            height: 2.25rem;
+        }
+
+        span {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: appColor(black-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+        }
+    }
+
+    .nav-cta {
+        margin: 0;
+        min-width: auto;
+        min-height: 40px;
+        background-color: appColor(secondary);
+        color: appColor(white-primary);
+        border: none;
+        border-radius: 25px;
+        padding: 0 1.25rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+}
