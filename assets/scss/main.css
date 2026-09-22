@@ -612,8 +612,12 @@ body.catalogue-page .portfolio .portfolio-grid {
   }
 }
 body.catalogue-page .portfolio .portfolio-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 body.catalogue-page .portfolio .portfolio-item:hover .portfolio-cover {
   transform: scale(1.03);

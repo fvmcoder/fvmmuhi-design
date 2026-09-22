@@ -187,8 +187,12 @@ body.catalogue-page {
         }
 
         .portfolio-item {
+            display: block;
+            text-decoration: none;
+            color: inherit;
             border-radius: 10px;
             overflow: hidden;
+            cursor: pointer;
 
             &:hover .portfolio-cover {
                 transform: scale(1.03);

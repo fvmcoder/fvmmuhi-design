@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Catalogue — The Catalogist</title>
+    <link rel="stylesheet" href="../../assets/scss/main.css">
+    <style>
+        /* ---- Catalogue detail page styles ---- */
+
+        body.catalogue-page .catalog-hero {
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 4.5rem 24px 2.5rem;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            body.catalogue-page .catalog-hero {
+                min-height: 420px;
+                padding: 5rem 24px 3rem;
+            }
+        }
+
+        body.catalogue-page .hero-breadcrumb {
+            position: absolute;
+            top: 1.5rem;
+            left: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        body.catalogue-page .hero-breadcrumb a {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+        }
+
+        body.catalogue-page .hero-breadcrumb a:hover {
+            color: #ffffff;
+        }
+
+        body.catalogue-page .hero-breadcrumb .bc-sep {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.8rem;
+        }
+
+        body.catalogue-page .hero-breadcrumb .bc-current {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.45);
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+        }
+
+        body.catalogue-page .catalog-hero-inner {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        body.catalogue-page .catalog-category-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border-radius: 25px;
+            padding: 4px 14px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12rem;
+            margin-bottom: 0.75rem;
+        }
+
+        body.catalogue-page .catalog-hero h1 {
+            color: #ffffff;
+            font-size: 2.25rem;
+            margin-top: 0;
+            margin-bottom: 1.25rem;
+            line-height: 1.15;
+        }
+
+        @media (min-width: 768px) {
+            body.catalogue-page .catalog-hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        body.catalogue-page .catalog-meta-row {
+            display: flex;
+            gap: 2rem;
+        }
+
+        body.catalogue-page .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        body.catalogue-page .meta-label {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.12rem;
+            font-weight: 700;
+        }
+
+        body.catalogue-page .meta-value {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 700;
+        }
+
+        /* ---- Description + Specs ---- */
+
+        body.catalogue-page .catalog-body {
+            background: #ffffff;
+            padding: 3rem 0;
+        }
+
+        body.catalogue-page .catalog-body-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        @media (min-width: 768px) {
+            body.catalogue-page .catalog-body-inner {
+                display: grid;
+                grid-template-columns: 1fr 300px;
+                gap: 3rem;
+                align-items: flex-start;
+            }
+        }
+
+        body.catalogue-page .catalog-description {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: rgba(6, 6, 6, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        body.catalogue-page .catalog-spec-panel {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        body.catalogue-page .catalog-spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+        }
+
+        body.catalogue-page .catalog-spec-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        body.catalogue-page .catalog-spec-row:first-child {
+            padding-top: 0;
+        }
+
+        body.catalogue-page .spec-key {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07rem;
+            color: rgba(6, 6, 6, 0.45);
+        }
+
+        body.catalogue-page .spec-val {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #060606;
+        }
+
+        /* ---- Back button ---- */
+
+        body.catalogue-page .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            min-width: auto;
+            min-height: 44px;
+            background: transparent;
+            color: #ff4500;
+            border: 2px solid #ff4500;
+            border-radius: 25px;
+            padding: 0 1.5rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.06rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        body.catalogue-page .btn-back:hover {
+            background: #ff4500;
+            color: #ffffff;
+        }
+
+        /* ---- Pages preview ---- */
+
+        body.catalogue-page .catalog-preview {
+            background: #f5f5f5;
+            padding: 4rem 0;
+        }
+
+        body.catalogue-page .catalog-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            body.catalogue-page .catalog-preview-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 1366px) {
+            body.catalogue-page .catalog-preview-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        body.catalogue-page .preview-page {
+            aspect-ratio: 0.707;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.09);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+            padding: 8%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        body.catalogue-page .pp-block {
+            border-radius: 3px;
+        }
+
+        body.catalogue-page .pp-img {
+            flex: 1;
+            border-radius: 4px;
+            min-height: 0;
+        }
+
+        body.catalogue-page .pp-line {
+            height: 5px;
+        }
+
+        body.catalogue-page .pp-line-short {
+            height: 5px;
+            width: 55%;
+        }
+
+        body.catalogue-page .pp-line-accent {
+            height: 7px;
+            width: 38%;
+        }
+
+        body.catalogue-page .pp-num {
+            position: absolute;
+            bottom: 5px;
+            right: 7px;
+            font-size: 0.45rem;
+            color: rgba(0, 0, 0, 0.28);
+            font-weight: 700;
+        }
+
+        /* ---- Not found ---- */
+
+        body.catalogue-page .catalog-not-found {
+            text-align: center;
+            padding: 6rem 24px;
+            background: #ffffff;
+        }
+
+        body.catalogue-page .catalog-not-found h2 {
+            font-size: 1.5rem;
+            color: #060606;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        body.catalogue-page .catalog-not-found p {
+            color: rgba(6, 6, 6, 0.5);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body class="catalogue-page">
+
+    <!-- Navigation -->
+    <nav class="catalogue-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">
+                <img src="../../assets/images/logo/logo-56.svg" alt="FvM logo">
+                <span>FvM Muhi</span>
+            </a>
+            <button class="nav-cta">Get Started</button>
+        </div>
+    </nav>
+
+    <!-- Content rendered by JS -->
+    <main id="catalog-main"></main>
+
+    <!-- Footer -->
+    <footer class="catalogue-footer">
+        <div class="footer-brand">
+            <img src="../../assets/images/logo/logo-56.svg" alt="FvM logo">
+            <span>FvM Muhi Design Studio</span>
+        </div>
+        <p class="footer-copy">&#169; 2024 FvM Muhi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var CATALOGUES = {
+            'fashion-24': {
+                title: "Fashion '24",
+                category: 'Fashion & Apparel',
+                pages: 32, year: '2024',
+                gradient: 'linear-gradient(135deg,#ff4500 0%,#ff7a45 100%)',
+                accent: '#ff4500',
+                description: 'A vibrant 32-page seasonal fashion catalogue designed for a contemporary clothing brand. The layout features bold full-bleed imagery areas, editorial typography, and a dynamic grid system that adapts across outfit collections, lookbook spreads, and individual product detail pages.',
+                specs: { 'Format': 'A4 Portrait', 'Pages': '32', 'Colour': 'Full Colour', 'Year': '2024', 'Files': 'PDF + InDesign' },
+                colors: ['#ff7a45','#ffe5d9','#ff4500','#fff0eb','#ffcbb3','#ff4500']
+            },
+            'tech-products': {
+                title: 'Tech Products',
+                category: 'Technology & Electronics',
+                pages: 48, year: '2024',
+                gradient: 'linear-gradient(135deg,#1938ff 0%,#4f68ff 100%)',
+                accent: '#1938ff',
+                description: 'A comprehensive 48-page product catalogue for a consumer electronics brand. Features detailed specification layouts, product comparison tables, and a clean, precise grid system that guides the reader from category overviews to individual product deep-dives.',
+                specs: { 'Format': 'A4 Portrait', 'Pages': '48', 'Colour': 'Full Colour', 'Year': '2024', 'Files': 'PDF + InDesign' },
+                colors: ['#1938ff','#dde3ff','#4f68ff','#eef0ff','#b3beff','#1938ff']
+            },
+            'home-living': {
+                title: 'Home & Living',
+                category: 'Home Decor & Furniture',
+                pages: 56, year: '2024',
+                gradient: 'linear-gradient(135deg,#24242d 0%,#3a3a50 100%)',
+                accent: '#24242d',
+                description: 'An elegant 56-page lifestyle catalogue for a premium home decor brand. Combines editorial-style room spreads with precise product detail pages, warm typographic palettes, and a consistent layout language across furniture, lighting, and accessories.',
+                specs: { 'Format': 'A4 Portrait', 'Pages': '56', 'Colour': 'Full Colour', 'Year': '2024', 'Files': 'PDF + InDesign' },
+                colors: ['#3a3a50','#e8e8ec','#24242d','#f0f0f4','#c8c8d8','#3a3a50']
+            },
+            'sports-gear': {
+                title: 'Sports & Gear',
+                category: 'Sports & Outdoor',
+                pages: 40, year: '2024',
+                gradient: 'linear-gradient(135deg,#ff4500 30%,#1938ff 100%)',
+                accent: '#ff4500',
+                description: 'A high-energy 40-page catalogue for a sports equipment and apparel brand. Diagonal layout systems, bold product callouts, and colour-coded category sections give the design a kinetic, performance-driven feel throughout.',
+                specs: { 'Format': 'A4 Portrait', 'Pages': '40', 'Colour': 'Full Colour', 'Year': '2024', 'Files': 'PDF + InDesign' },
+                colors: ['#ff4500','#dde3ff','#1938ff','#ffe5d9','#4f68ff','#ff7a45']
+            },
+            'beauty-care': {
+                title: 'Beauty & Care',
+                category: 'Beauty & Cosmetics',
+                pages: 28, year: '2024',
+                gradient: 'linear-gradient(135deg,#e60dff 0%,#8e0dff 100%)',
+                accent: '#e60dff',
+                description: 'A luxurious 28-page beauty catalogue featuring soft-focus aesthetics, generous white space, and meticulously crafted product spotlight layouts. Designed to communicate premium brand values across skincare, makeup, and fragrance categories.',
+                specs: { 'Format': 'A4 Portrait', 'Pages': '28', 'Colour': 'Full Colour', 'Year': '2024', 'Files': 'PDF + InDesign' },
+                colors: ['#e60dff','#f9d9ff','#8e0dff','#f5eeff','#d9b3ff','#e60dff']
+            },
+            'corporate-b2b': {
+                title: 'Corporate B2B',
+                category: 'B2B & Professional Services',
+                pages: 24, year: '2024',
+                gradient: 'linear-gradient(135deg,#060606 0%,#24242d 100%)',
+                accent: '#060606',
+                description: 'A polished 24-page corporate capabilities catalogue for a professional services firm. Sophisticated dark-accent design language, data visualisation spreads, service overview pages, and client case study layouts create a high-credibility print piece.',
+                specs: { 'Format': 'A4 Portrait', 'Pages': '24', 'Colour': '2-Colour + Black', 'Year': '2024', 'Files': 'PDF + InDesign' },
+                colors: ['#060606','#e8e8ec','#24242d','#f0f0f0','#c0c0c8','#060606']
+            }
+        };
+
+        function getSlug() {
+            var parts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+            var last = parts[parts.length - 1];
+            if (!last || last === 'index.html') return null;
+            return last;
+        }
+
+        function previewPages(cat) {
+            var html = '';
+            var count = 6;
+            var cols = cat.colors;
+            for (var i = 0; i < count; i++) {
+                var c = cols[i % cols.length];
+                var even = (i % 2 === 0);
+                var inner = even
+                    ? '<div class="pp-img pp-block" style="background:' + c + ';opacity:.15;"></div>'
+                      + '<div class="pp-line pp-block" style="background:' + c + ';opacity:.3;"></div>'
+                      + '<div class="pp-line-short pp-block" style="background:rgba(0,0,0,.08);"></div>'
+                    : '<div class="pp-line-accent pp-block" style="background:' + c + ';opacity:.45;"></div>'
+                      + '<div class="pp-line pp-block" style="background:rgba(0,0,0,.08);"></div>'
+                      + '<div class="pp-img pp-block" style="background:' + c + ';opacity:.1;"></div>'
+                      + '<div class="pp-line-short pp-block" style="background:rgba(0,0,0,.06);"></div>';
+                html += '<div class="preview-page">' + inner
+                      + '<span class="pp-num">' + ((i * 2) + 1) + '&#8202;–&#8202;' + ((i * 2) + 2) + '</span>'
+                      + '</div>';
+            }
+            return html;
+        }
+
+        function specRows(specs) {
+            return Object.keys(specs).map(function(k) {
+                return '<div class="catalog-spec-row">'
+                     + '<span class="spec-key">' + k + '</span>'
+                     + '<span class="spec-val">' + specs[k] + '</span>'
+                     + '</div>';
+            }).join('');
+        }
+
+        function render() {
+            var slug = getSlug();
+            var main = document.getElementById('catalog-main');
+
+            if (!slug) {
+                window.location.replace('/catalogue.html');
+                return;
+            }
+
+            if (!CATALOGUES[slug]) {
+                document.title = 'Not Found — FvM Muhi';
+                main.innerHTML = '<div class="catalog-not-found">'
+                    + '<p class="section-label">404</p>'
+                    + '<h2>Catalogue Not Found</h2>'
+                    + '<p>The catalogue you\'re looking for doesn\'t exist or may have moved.</p>'
+                    + '<a href="/catalogue.html" class="btn-back">&#8592; Back to Portfolio</a>'
+                    + '</div>';
+                return;
+            }
+
+            var cat = CATALOGUES[slug];
+            document.title = cat.title + ' — FvM Muhi';
+
+            main.innerHTML =
+                /* Hero */
+                '<section class="catalog-hero" style="background:' + cat.gradient + ';">'
+                + '<nav class="hero-breadcrumb" aria-label="breadcrumb">'
+                + '<a href="/catalogue.html">Portfolio</a>'
+                + '<span class="bc-sep">&#8250;</span>'
+                + '<span class="bc-current">' + cat.category + '</span>'
+                + '</nav>'
+                + '<div class="catalog-hero-inner">'
+                + '<span class="catalog-category-badge">' + cat.category + '</span>'
+                + '<h1>' + cat.title + '</h1>'
+                + '<div class="catalog-meta-row">'
+                + '<div class="meta-item"><span class="meta-label">Pages</span><span class="meta-value">' + cat.pages + '</span></div>'
+                + '<div class="meta-item"><span class="meta-label">Year</span><span class="meta-value">' + cat.year + '</span></div>'
+                + '<div class="meta-item"><span class="meta-label">Format</span><span class="meta-value">A4 Print</span></div>'
+                + '</div>'
+                + '</div>'
+                + '</section>'
+
+                /* Description + Specs */
+                + '<section class="catalog-body">'
+                + '<div class="catalog-body-inner">'
+                + '<div>'
+                + '<p class="section-label" style="text-align:left;margin-bottom:.5rem;">About this catalogue</p>'
+                + '<p class="catalog-description">' + cat.description + '</p>'
+                + '<a href="/catalogue.html" class="btn-back">&#8592; Back to Portfolio</a>'
+                + '</div>'
+                + '<aside class="catalog-spec-panel">' + specRows(cat.specs) + '</aside>'
+                + '</div>'
+                + '</section>'
+
+                /* Pages Preview */
+                + '<section class="catalog-preview">'
+                + '<div class="section-inner">'
+                + '<p class="section-label">Pages Preview</p>'
+                + '<h2 class="section-title">Inside the Catalogue</h2>'
+                + '<div class="catalog-preview-grid">' + previewPages(cat) + '</div>'
+                + '</div>'
+                + '</section>'
+
+                /* CTA */
+                + '<section class="cta-band">'
+                + '<h2>Love this style?</h2>'
+                + '<p>Let\'s create a catalogue like this for your brand.</p>'
+                + '<button class="btn-cta">Start Your Project</button>'
+                + '</section>';
+        }
+
+        render();
+    </script>
+</body>
+</html>
