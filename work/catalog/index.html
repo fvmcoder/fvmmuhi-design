@@ -4,7 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Catalogue — The Catalogist</title>
+    <title>Catalogue | Product Catalogue Design | The Catalogist</title>
+
+    <!-- SEO: defaults overridden per-catalogue by JS -->
+    <meta name="description" content="Professional product catalogue design service. Browse our portfolio of print-ready, brand-tailored catalogue designs.">
+    <meta name="keywords" content="product catalogue design, catalogue design service, print catalogue, brand catalogue">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="FvM Muhi">
+    <link rel="canonical" href="https://thecatalogist.com/work/catalog/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="The Catalogist">
+    <meta property="og:title" content="Catalogue | Product Catalogue Design | The Catalogist">
+    <meta property="og:description" content="Professional product catalogue design service. Browse our portfolio of print-ready, brand-tailored catalogue designs.">
+    <meta property="og:url" content="https://thecatalogist.com/work/catalog/">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@thecatalogist">
+    <meta name="twitter:title" content="Catalogue | Product Catalogue Design | The Catalogist">
+    <meta name="twitter:description" content="Professional product catalogue design service. Browse our portfolio of print-ready, brand-tailored catalogue designs.">
+
     <link rel="stylesheet" href="../../assets/scss/main.css">
     <style>
         /* ---- Catalogue detail page styles ---- */
@@ -434,6 +456,98 @@
             }).join('');
         }
 
+        var BASE = 'https://thecatalogist.com';
+
+        function setMeta(selector, key, val, content) {
+            var el = document.querySelector(selector);
+            if (!el) {
+                el = document.createElement('meta');
+                el.setAttribute(key, val);
+                document.head.appendChild(el);
+            }
+            el.setAttribute('content', content);
+        }
+
+        function setLink(rel, href) {
+            var el = document.querySelector('link[rel="' + rel + '"]');
+            if (!el) { el = document.createElement('link'); el.rel = rel; document.head.appendChild(el); }
+            el.href = href;
+        }
+
+        function setSEO(slug, cat) {
+            var url    = BASE + '/work/catalog/' + slug;
+            var ptitle = cat.title + ' | Product Catalogue Design | The Catalogist';
+            var desc   = cat.description.length > 158
+                ? cat.description.slice(0, 155) + '...'
+                : cat.description;
+            var kw = 'product catalogue design, ' + cat.category.toLowerCase()
+                   + ', catalogue design, print design, ' + cat.title.toLowerCase() + ' catalogue';
+
+            document.title = ptitle;
+
+            setMeta('meta[name="description"]',       'name',     'description', desc);
+            setMeta('meta[name="keywords"]',           'name',     'keywords',    kw);
+            setMeta('meta[name="robots"]',             'name',     'robots',      'index, follow');
+            setLink('canonical', url);
+
+            setMeta('meta[property="og:title"]',       'property', 'og:title',       ptitle);
+            setMeta('meta[property="og:description"]', 'property', 'og:description', desc);
+            setMeta('meta[property="og:url"]',         'property', 'og:url',         url);
+            setMeta('meta[property="og:type"]',        'property', 'og:type',        'article');
+
+            setMeta('meta[name="twitter:title"]',       'name', 'twitter:title',       ptitle);
+            setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', desc);
+
+            /* JSON-LD: WebPage + BreadcrumbList + CreativeWork */
+            var old = document.getElementById('jsonld-cat');
+            if (old) old.parentNode.removeChild(old);
+            var ld = document.createElement('script');
+            ld.id   = 'jsonld-cat';
+            ld.type = 'application/ld+json';
+            ld.text = JSON.stringify({
+                '@context': 'https://schema.org',
+                '@graph': [
+                    {
+                        '@type': 'WebPage',
+                        '@id': url,
+                        'url': url,
+                        'name': ptitle,
+                        'description': desc,
+                        'inLanguage': 'en-US',
+                        'isPartOf': { '@id': BASE + '/catalogue.html' },
+                        'breadcrumb': {
+                            '@type': 'BreadcrumbList',
+                            'itemListElement': [
+                                { '@type': 'ListItem', 'position': 1, 'name': 'Home',      'item': BASE + '/' },
+                                { '@type': 'ListItem', 'position': 2, 'name': 'Portfolio', 'item': BASE + '/catalogue.html' },
+                                { '@type': 'ListItem', 'position': 3, 'name': cat.title,   'item': url }
+                            ]
+                        }
+                    },
+                    {
+                        '@type': 'CreativeWork',
+                        'name': cat.title + ' Product Catalogue',
+                        'description': cat.description,
+                        'url': url,
+                        'genre': cat.category,
+                        'numberOfPages': cat.pages,
+                        'dateCreated': cat.year + '-01-01',
+                        'creator': {
+                            '@type': 'Person',
+                            'name': 'FvM Muhi',
+                            'url': BASE
+                        },
+                        'publisher': {
+                            '@type': 'Organization',
+                            'name': 'The Catalogist',
+                            'url': BASE
+                        }
+                    }
+                ]
+            });
+            document.head.appendChild(ld);
+        }
+
         function render() {
             var slug = getSlug();
             var main = document.getElementById('catalog-main');
@@ -444,7 +558,8 @@
             }
 
             if (!CATALOGUES[slug]) {
-                document.title = 'Not Found — FvM Muhi';
+                document.title = 'Not Found | The Catalogist';
+                setMeta('meta[name="robots"]', 'name', 'robots', 'noindex, follow');
                 main.innerHTML = '<div class="catalog-not-found">'
                     + '<p class="section-label">404</p>'
                     + '<h2>Catalogue Not Found</h2>'
@@ -455,7 +570,7 @@
             }
 
             var cat = CATALOGUES[slug];
-            document.title = cat.title + ' — FvM Muhi';
+            setSEO(slug, cat);
 
             main.innerHTML =
                 /* Hero */
